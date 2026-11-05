@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заголовок страницы</title>
+</head>
+
+<body>
+    <h1 id="heading">Заголовок</h1>
+    <p id="text">Текст</p>
+    <button id="button">Нажми меня</button>
+    <script>
+        let heading = document.querySelector('#heading');
+        let text = document.querySelector('#text');
+        document.querySelector('#color');
+        let button = document.querySelector('#button');
+        button.addEventListener('click', function () { heading.style.color = "red" })
+        button.addEventListener('click', function () { text.style.color = "red" })
+        button.addEventListener('click', function () { document.body.style.backgroundColor = 'pink' })
+    </script>
+</body>
+
+</html>
