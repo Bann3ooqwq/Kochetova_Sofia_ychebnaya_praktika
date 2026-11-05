@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Заголовок страницы</title>
+  </head>
+  <body>
+    <div id="output"></div>
+    <script>
+      const employee = {
+        name: 'Дмитрий',
+        position: 'Веб-разработчик',
+        showInfo() {
+          document.getElementById('output').innerHTML += `${this.name} - ${this.position}<br>`; }
+        }
+      employee.showInfo();
+      const bShowInfo = employee.showInfo.bind(employee);
+      bShowInfo(); 
+      const twoEmployee = {
+        name: "Иван",
+        position: "Дизайнер"
+      };
+      employee.showInfo.call(twoEmployee);
+    </script>
+  </body>
+</html>
