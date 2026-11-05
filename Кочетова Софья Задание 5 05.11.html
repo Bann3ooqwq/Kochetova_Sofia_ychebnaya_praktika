@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой список дел</title>
+</head>
+<body>
+
+<h1>Мой список дел</h1>
+<p id="counter">В списке 0 задач.</p>
+<ol id="task-list">
+    <li><button class="delete-btn" type="button">✖ Удалить</button> Сдать работу</li>
+</ol>
+<form id="add-task-form">
+    <input type="text" name="new-task" required placeholder="Например: сходить в магазин">
+    <button type="submit">Добавить ➕</button>
+</form>
+
+<script>
+const taskList = document.querySelector('#task-list');
+const counterText = document.querySelector('#counter');
+const addTaskForm = document.querySelector('#add-task-form');
+
+function updateCounter() {
+  const count = taskList.children.length;
+  counterText.textContent = `В списке ${count} задача${count === 1 ? '' : 'ы'}.`;
+}
+updateCounter();
+
+addTaskForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const newTaskValue = this.elements['new-task'].value.trim();
+  if (!newTaskValue) return; // Если поле пустое — ничего не делаем
+
+  const li = document.createElement('li');
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.type = 'button';
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.textContent = '✖ Удалить';
+
+  const textNode = document.createTextNode(newTaskValue);
+
+  li.append(deleteBtn);
+  li.append(textNode);
+
+  taskList.append(li);
+
+  this.reset();
+
+  updateCounter();
+});
+taskList.addEventListener('click', function(event) {
+  if (event.target && event.target.matches('.delete-btn')) {
+    const parentLi = event.target.parentElement;
+    parentLi.remove();
+    updateCounter();
+  }
+});</script>
+
+</body>
+</html>

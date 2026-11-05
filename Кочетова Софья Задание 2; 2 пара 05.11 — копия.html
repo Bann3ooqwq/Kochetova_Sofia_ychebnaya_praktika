@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>практика | call() и apply()</title>
+</head>
+<body>
+<script>
+const product = { name: "Наушники", price: 5000 };
+function showProduct(discount, city) {
+    const finalPrice = Math.floor(this.price * (1 - discount / 100));
+    let output = `
+        Товар: ${this.name}
+        | Цена после скидки: ${finalPrice} руб.
+        | Город: ${city}`;
+
+    return output;
+}
+
+
+let resultCall = showProduct.call(product, 10, 'Москва');
+document.write('<p>' + resultCall + '</p>');
+
+let resultApply = showProduct.apply(product, [20, 'Москва']);
+document.write('<p>' + resultApply + '</p>');
+</script>
+</body>
+</html>

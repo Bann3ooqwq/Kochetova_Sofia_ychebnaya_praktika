@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Заголовок страницы</title>
+</head>
+
+<body>
+    <button id="button">Удалить текст >:3</button>
+    <p id="paragraph">Текст :3</p>
+    <script>
+        let paragraph = document.querySelector("#paragraph");
+        let button = document.querySelector("#button");
+
+        button.addEventListener("click", function() {
+            paragraph.remove();
+        });
+    </script>
+</body>
+
+</html>

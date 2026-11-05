@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Карточка студента</title>
+  </head>
+  <body>
+    <!-- Блок карточки -->
+    <div id="student-card">
+      <h1>Синицин Олег Михайлович</h1>
+      <p><strong>Специальность:</strong> Веб-разработка</p>
+      <p><strong>Курс:</strong> 2</p>
+      
+      <ul>
+        <li>Математика</li>
+        <li>Информатика</li>
+        <li contenteditable="true">Физика</li>
+      </ul>
+
+      <img src="https://pk.i-spo.ru/images/news/istock-1499791717-6a61f6a662dfa124484919.jpg" width="300" height="200" alt="Фотография студента">
+
+      <button id="change-info-btn">Изменить информацию</button>
+      <button id="hide-card-btn">Скрыть карточку</button>
+    </div>
+
+    <div style="display:none;" id="input-block">
+      Введите новое имя:
+      <input type="text" id="new-name-input">
+      <button id="save-new-name-btn">Сохранить</button>
+    </div>
+
+    <script>
+
+        const changeBtn = document.querySelector('#change-info-btn');
+        const inputBlock = document.querySelector('#input-block');
+        const saveNameBtn = document.querySelector('#save-new-name-btn');
+        const nameInput = document.querySelector('#new-name-input');
+        const studentNameTag = document.querySelector('h1');
+
+
+        changeBtn.addEventListener('click', () => {
+        inputBlock.style.display = 'block';
+        });
+        saveNameBtn.addEventListener('click', () => {
+        const newValue = nameInput.value;
+  
+         if (!newValue.trim()) return;
+
+
+        studentNameTag.textContent = newValue;
+
+        inputBlock.style.display = 'none';
+        nameInput.value = '';
+        });
+        const hideCardBtn = document.querySelector('#hide-card-btn');
+        const card = document.querySelector('#student-card');
+        hideCardBtn.addEventListener('click', () => {
+         card.setAttribute('hidden', '');
+        });
+        const subjectList = document.querySelector('ul');
+        subjectList.lastChild.setAttribute('contenteditable', true);
+        subjectList.addEventListener('keydown', function(event) {
+         if (
+         event.key === 'Enter' && 
+         event.target.tagName.toLowerCase() === 'li' &&
+         event.target.isEqualNode(subjectList.lastChild)
+         ) {
+           const newLi = document.createElement('li');
+        newLi.textContent = event.target.textContent;
+        event.target.textContent = '';
+        subjectList.append(newLi);
+        event.target.focus();
+         }});
+    </script>
+  </body>
+</html>
