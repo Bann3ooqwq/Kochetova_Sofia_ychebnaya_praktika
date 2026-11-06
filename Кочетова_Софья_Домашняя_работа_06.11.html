@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Погода</title>
+  </head>
+  <body>
+    <div id="weather"></div>
+<script>
+function GetmoscowWeather () {
+  fetch('https://wttr.in/Moscow?format=j1')
+    .then(response => {
+      if (!response.ok) { throw new Error(`Ошибка: ${response.status} ${response.statusText}`); }
+      return response.text();
+    })
+    .then(data => {
+      const parsed = JSON.parse(data);
+      const tempC = parsed.current_condition[0].temp_C;
+      document.getElementById("weather").innerHTML = `<p>Температура: ${tempC}°C</p>`;
+      console.log(tempC);
+    })
+    .catch(error => console.error('Ошибка:', error.message))
+    .finally(() => console.log('Запрос завершён'));
+}
+</script>
+  </body>
+</html>
